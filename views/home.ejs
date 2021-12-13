@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <script src="https://kit.fontawesome.com/a44b4d40da.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <div class="section" >
+        
+        <ul class = "contact">
+            <h1><i class="fas fa-user-friends"></i><%= title %></h1>
+            <div class="body">
+                <% for(let i of contact_list) { %>
+                    <li class = "card">
+                        <div class="name"><%= i.name %></div>
+                        <div class="phone"><%= i.phone%></div>
+                    </li>   
+                <% } %>
+            </div>
+
+            <form action="/create-contact" method="post" class="form">
+                <input type="text" name="name" placeholder="Enter your name" required>
+                <input type="number" name="phone" placeholder="Enter your number" required>
+        
+                <button type="submit">Create</button>
+            </form>
+        </ul>
+    </div>
+
+    <script src = "/js/home.js"></script>
+</body>
+</html>
