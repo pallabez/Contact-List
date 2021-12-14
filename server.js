@@ -11,7 +11,7 @@ app.use(express.static('assets'));
 
 app.use(function(req, res, next) {
     console.log('Middleware 1');
-    next();
+     next();
 });
 
 class Contact {
@@ -33,9 +33,24 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/delete-contact', function(req, res) {
+    console.log(req.query);
+    let phone = req.query.phone;
+    let name = req.query.name;
+
+    let contactIndex = contactList.findIndex(contact => contact.phone == phone && contact.name == name);
+
+    if(contactList != -1) {
+        contactList.splice(contactIndex, 1);
+    }
+
+    return res.redirect('back');
+});
+
+
 app.post('/create-contact', function(req, res) {
     contactList.push(req.body);
-    res.redirect('/')
+    res.redirect('/');
 });
 
 app.listen(port, function(err) {

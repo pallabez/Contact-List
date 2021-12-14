@@ -16,10 +16,17 @@
             <h1><i class="fas fa-user-friends"></i><%= title %></h1>
             <div class="body">
                 <% for(let i of contact_list) { %>
-                    <li class = "card">
-                        <div class="name"><%= i.name %></div>
-                        <div class="phone"><%= i.phone%></div>
-                    </li>   
+                    <div class = "card">
+                        <div class = "details">
+                            <div class="name"><%= i.name %></div>
+                            <div class="phone"><%= i.phone%></div>
+                        </div>
+                        <div class = "close-btn">
+                            <a href="/delete-contact/?phone=<%= i.phone %>&name=<%= i.name %>">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </div>  
+                    </div> 
                 <% } %>
             </div>
 

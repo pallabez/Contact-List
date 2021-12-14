@@ -19,6 +19,10 @@
     margin: 1rem 0;
 }
 .section .contact .body .card {
+    display: flex;
+    align-items: center;
+}
+.section .contact .body .card .details{
     width: 14rem;
     height: 3rem;
 
@@ -26,12 +30,16 @@
     align-items: center;
     justify-content: space-between;
 
-    margin-top: 0.4rem;
+    margin: 0.4rem 0;
     padding: 5px;
     border-radius: 4px;
 }
-.section .contact .body .card:hover {
+.section .contact .body .card .details:hover {
     box-shadow: 0 0 5px -0.6px black;
+}
+
+.section .contact .body .card .close-btn a{
+   color: black;
 }
 
 
