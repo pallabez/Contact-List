@@ -26,7 +26,7 @@ var contactList = [
 ]
 
 app.get('/', function(req, res) {
-    Contact.find({}, function(err, contacts) {
+    Contact.find({}, function(err, contacts) {      //find({name: new}, ) To display contacts with new name
         if(err) {
             console.log("Error in fetching contact");
             return;
@@ -40,23 +40,20 @@ app.get('/', function(req, res) {
 });
 
 app.get('/delete-contact', function(req, res) {
-    console.log(req.query);
-    let phone = req.query.phone;
-    let name = req.query.name;
+    let id = req.query.id;
 
-    let contactIndex = contactList.findIndex(contact => contact.phone == phone && contact.name == name);
+    Contact.findByIdAndDelete(id, function(err) {
+        if(err) {
+            console.log("Error in deleting the contact.");
+            return;
+        }
 
-    if(contactList != -1) {
-        contactList.splice(contactIndex, 1);
-    }
-
-    return res.redirect('back');
+        return res.redirect('back');
+    });
 });
 
 
 app.post('/create-contact', function(req, res) {
-    // contactList.push(req.body);
-
     Contact.create({
         name: req.body.name,
         phone: req.body.phone,
@@ -65,7 +62,6 @@ app.post('/create-contact', function(req, res) {
             console.log("Error in creating contact.");
             return;
         }
-        console.log('*****\n',newContact);
         res.redirect('back');
     });
 });
